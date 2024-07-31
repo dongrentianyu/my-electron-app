@@ -4,6 +4,7 @@
   "description": "014",
   "main": "main.js",
   "scripts": {
+    "start": "electron .",
     "dev": "electron . --enable-loggin --no-sandbox",
     "build-64": "electron-builder --win --x64",
     "build-linux": "electron-builder --linux",
