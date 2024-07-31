@@ -7,34 +7,13 @@
     "dev": "electron . --enable-loggin --no-sandbox",
     "build-64": "electron-builder --win --x64",
     "build-linux": "electron-builder --linux",
-    "build-mac": "electron-builder --mac",
-    "start": "electron-forge start",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "package": "electron-forge package",
-    "make": "electron-forge make",
-    "publish": "electron-forge publish"
+    "build-mac": "electron-builder --mac"
   },
   "keywords": [],
   "author": "00",
   "license": "ISC",
   "devDependencies": {
-    "@electron-forge/cli": "^7.4.0",
-    "@electron-forge/maker-dmg": "^7.4.0",
-    "@electron-forge/maker-zip": "^7.4.0",
-    "@electron-forge/plugin-fuses": "^7.4.0",
-    "@electron-forge/publisher-github": "^7.4.0",
-    "@electron/fuses": "^1.8.0",
-    "electron": "^31.3.1",
-    "electron-squirrel-startup": "^1.0.1"
-  },
-  "dependencies": {
-    "@electron-forge/maker-base": "^7.4.0",
-    "@electron-forge/maker-squirrel": "^7.4.0",
-    "@electron-forge/shared-types": "^7.4.0",
-    "@electron-forge/tracer": "^7.4.0",
-    "@electron/asar": "^3.2.10",
-    "@electron/remote": "^2.1.2",
-    "chrome-trace-event": "^1.0.4",
-    "debug": "^4.3.6"
+    "electron": "31.3.1",
+    "electron-builder": "^24.13.3"
   }
 }
