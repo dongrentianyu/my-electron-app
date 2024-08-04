@@ -4,7 +4,8 @@
   "description": "014",
   "main": "main.js",
   "scripts": {
-    "start": "electron .",
+    "112": "electron .",
+    "start": "nodemon --watch main.js --exec pnpm run 112",
     "dev": "electron . --enable-loggin --no-sandbox",
     "build-64": "electron-builder --win --x64",
     "build-linux": "electron-builder --linux",
@@ -14,7 +15,14 @@
   "author": "00",
   "license": "ISC",
   "devDependencies": {
+    "@babel/preset-react": "^7.24.7",
+    "@types/react-dom": "^18.3.0",
     "electron": "31.3.1",
-    "electron-builder": "^24.13.3"
+    "electron-builder": "^24.13.3",
+    "nodemon": "^3.1.4"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   }
 }

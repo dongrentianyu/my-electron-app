@@ -7,16 +7,23 @@ const path = require("node:path");
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
+    backgroundColor: "#2e2c29",
+    x: 50,
+    y: 100,
     width: 800,
-    height: 600,
+    height: 400,
+    show: false,
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
     },
   });
   // 加载 index.html
   mainWindow.loadFile("index.html");
+  mainWindow.on("ready-to-show", () => {
+    mainWindow.show();
+  });
   // 打开开发工具
-  // mainWindow.webContents.openDevTools();
+  mainWindow.webContents.openDevTools();
   // console.log("Hello from Electron");
 };
 
