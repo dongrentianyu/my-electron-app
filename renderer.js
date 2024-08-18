@@ -22,8 +22,5 @@ setButton.addEventListener("click", () => {
 const tt = document.getElementById("ttt");
 tt.addEventListener("click", () => {
   // 尝试通信
-  let indexWIN = new BrowserWindow({
-    width: 100,
-    height: 100,
-  });
+  window.electronAPI.yyu();
 });

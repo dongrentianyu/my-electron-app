@@ -24,7 +24,7 @@ contextBridge.exposeInMainWorld("electronAPI", {
 });
 
 // 发送消息到主进程请求创建窗口
-ipcRenderer.send("");
+ipcRenderer.send("window-created");
 
 // 监听主进程的响应
 ipcRenderer.on("reply", (event, message) => {

@@ -56,7 +56,7 @@ function yyu() {
   });
 
   // 加载index.html的文件
-  ass.loadFile("index.html");
+  ass.loadFile("test.html");
 
   // 打开开发者工具
   ass.webContents.openDevTools();
