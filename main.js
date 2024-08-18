@@ -7,15 +7,22 @@ const path = require("node:path");
 const createWindow = () => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    backgroundColor: "#2e2c29",
+    backgroundColor: "white",
     x: 50,
     y: 100,
     width: 800,
     height: 400,
     show: false,
+    icon: "123.jpg",
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
     },
+  });
+
+  ipcMain.on("set-title", (event, title) => {
+    const webContents = event.sender;
+    const win = BrowserWindow.fromWebContents(webContents);
+    win.setTitle(title);
   });
   // 加载 index.html
   mainWindow.loadFile("index.html");
@@ -23,15 +30,62 @@ const createWindow = () => {
     mainWindow.show();
   });
   // 打开开发工具
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
   // console.log("Hello from Electron");
 };
 
 // 这段程序将会在 Electron 结束初始化
 // 和创建浏览器窗口的时候调用
 // 部分 API 在 ready 事件触发后才能使用。
+function handleSetTitle(event, title) {
+  const webContents = event.sender;
+  const win = BrowserWindow.fromWebContents(webContents);
+  win.setTitle(title);
+}
+
+// 模仿写一个可以新建窗口的
+function yyu() {
+  // 创建浏览器窗口。
+  let ass = new BrowserWindow({
+    width: 100,
+    height: 100,
+    webPreferences: {
+      nodeIntegration: true, // 根据需要启用或禁用 Node.js 集成
+      contextIsolation: false, // 启用或禁用上下文隔离
+    },
+  });
+
+  // 加载index.html的文件
+  ass.loadFile("index.html");
+
+  // 打开开发者工具
+  ass.webContents.openDevTools();
+
+  // 设置窗口的 IPC 监听器
+  ass.webContents.on("did-finish-load", () => {
+    ass.webContents.send(
+      "window-created",
+      "Window is ready for IPC communication"
+    );
+  });
+
+  // 监听来自渲染进程的消息
+  ass.webContents.on("message", (event, message) => {
+    console.log("Message from renderer:", message);
+    // 可以在这里处理消息，并发送响应
+    ass.webContents.send("reply", "Received your message: " + message);
+  });
+}
+
 app.whenReady().then(() => {
-  ipcMain.handle("ping", () => "pong");
+  // 监听主进程中的 IPC 消息
+  ipcMain.on("yyu", () => {
+    createWindow();
+  });
+
+  ipcMain.on("set-title", handleSetTitle);
+
+  // ipcMain.handle("ping", () => "pong");
   createWindow();
 
   app.on("activate", () => {

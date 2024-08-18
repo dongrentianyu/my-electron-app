@@ -10,3 +10,20 @@ const func = async () => {
 };
 
 func();
+
+/* const setButton = document.getElementById("btn");
+const titleInput = document.getElementById("title");
+setButton.addEventListener("click", () => {
+  const title = titleInput.value;
+  window.electronAPI.setTitle(title);
+}); */
+
+//设立新窗口
+const tt = document.getElementById("ttt");
+tt.addEventListener("click", () => {
+  // 尝试通信
+  let indexWIN = new BrowserWindow({
+    width: 100,
+    height: 100,
+  });
+});
