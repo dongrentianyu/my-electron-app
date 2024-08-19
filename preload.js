@@ -19,12 +19,13 @@ contextBridge.exposeInMainWorld("versions", {
   // 除函数之外，我们也可以暴露变量
 });
 
-contextBridge.exposeInMainWorld("electronAPI", {
+contextBridge.exposeInMainWorld("myAPI", {
   setTitle: (title) => ipcRenderer.send("set-title", title),
+  yyu: () => ipcRenderer.send("yyu"),
 });
 
 // 发送消息到主进程请求创建窗口
-ipcRenderer.send("window-created");
+// ipcRenderer.send("window-created");
 
 // 监听主进程的响应
 ipcRenderer.on("reply", (event, message) => {
