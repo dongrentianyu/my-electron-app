@@ -15,12 +15,12 @@ func();
 const titleInput = document.getElementById("title");
 setButton.addEventListener("click", () => {
   const title = titleInput.value;
-  window.electronAPI.setTitle(title);
+  window.myAPI.setTitle(title);
 }); */
 
 //设立新窗口
 const tt = document.getElementById("ttt");
 tt.addEventListener("click", () => {
   // 尝试通信
-  window.electronAPI.yyu();
+  window.myAPI.yyu();
 });

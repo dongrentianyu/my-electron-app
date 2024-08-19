@@ -79,15 +79,13 @@ function yyu() {
 
 app.whenReady().then(() => {
   // 监听主进程中的 IPC 消息
+  createWindow();
   ipcMain.on("yyu", () => {
-    createWindow();
+    yyu();
   });
 
   ipcMain.on("set-title", handleSetTitle);
-
-  // ipcMain.handle("ping", () => "pong");
-  createWindow();
-
+  ipcMain.handle("ping", () => "pong");
   app.on("activate", () => {
     // 在 macOS 系统内, 如果没有已开启的应用窗口
     // 点击托盘图标时通常会重新创建一个新窗口
