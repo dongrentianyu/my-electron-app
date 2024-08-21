@@ -32,7 +32,7 @@ const createWindow = () => {
 
 function handleSetTitle(event, title) {
   const webContents = event.sender;
-  const win = BrowserWindow.fromWebContents(webContents);
+  let win = BrowserWindow.fromWebContents(webContents);
   win.setTitle(title);
 }
 
@@ -45,7 +45,8 @@ function yyu() {
     icon: "1234.jpg",
     webPreferences: {
       nodeIntegration: true, // 根据需要启用或禁用 Node.js 集成
-      contextIsolation: false, // 启用或禁用上下文隔离
+      // contextIsolation: false, // 启用或禁用上下文隔离
+      preload: path.join(__dirname, "preload.js"),
     },
   });
 
