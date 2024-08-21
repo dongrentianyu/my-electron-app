@@ -5,7 +5,7 @@ const { app, BrowserWindow, ipcMain } = require("electron/main");
 const path = require("node:path");
 
 const createWindow = () => {
-  // Create the browser window.
+  // 创建主窗口
   const mainWindow = new BrowserWindow({
     backgroundColor: "white",
     x: 50,
@@ -19,47 +19,39 @@ const createWindow = () => {
     },
   });
 
-  ipcMain.on("set-title", (event, title) => {
-    const webContents = event.sender;
-    const win = BrowserWindow.fromWebContents(webContents);
-    win.setTitle(title);
-  });
   // 加载 index.html
   mainWindow.loadFile("index.html");
   mainWindow.on("ready-to-show", () => {
     mainWindow.show();
   });
-  // 打开开发工具
-  // mainWindow.webContents.openDevTools();
-  // console.log("Hello from Electron");
 };
 
 // 这段程序将会在 Electron 结束初始化
 // 和创建浏览器窗口的时候调用
 // 部分 API 在 ready 事件触发后才能使用。
+
 function handleSetTitle(event, title) {
   const webContents = event.sender;
   const win = BrowserWindow.fromWebContents(webContents);
   win.setTitle(title);
 }
 
-// 模仿写一个可以新建窗口的
+// 可以新建窗口了
 function yyu() {
   // 创建浏览器窗口。
   let ass = new BrowserWindow({
-    width: 100,
-    height: 100,
+    width: 800,
+    height: 400,
+    icon: "1234.jpg",
     webPreferences: {
       nodeIntegration: true, // 根据需要启用或禁用 Node.js 集成
       contextIsolation: false, // 启用或禁用上下文隔离
     },
   });
 
-  // 加载index.html的文件
+  // 加载test.html的文件
   ass.loadFile("test.html");
-
-  // 打开开发者工具
-  ass.webContents.openDevTools();
+  // ass.loadURL("https://www.bilibili.com/");
 
   // 设置窗口的 IPC 监听器
   ass.webContents.on("did-finish-load", () => {
@@ -77,6 +69,7 @@ function yyu() {
   });
 }
 
+// 搞一个可以在主进程点击按钮修改test窗口中的标题，以表示学会了IPC通信
 app.whenReady().then(() => {
   // 监听主进程中的 IPC 消息
   createWindow();
@@ -85,7 +78,7 @@ app.whenReady().then(() => {
   });
 
   ipcMain.on("set-title", handleSetTitle);
-  ipcMain.handle("ping", () => "pong");
+  // ipcMain.handle("ping", () => "pong");
   app.on("activate", () => {
     // 在 macOS 系统内, 如果没有已开启的应用窗口
     // 点击托盘图标时通常会重新创建一个新窗口

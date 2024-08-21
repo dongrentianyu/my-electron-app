@@ -11,14 +11,14 @@ const func = async () => {
 
 func();
 
-/* const setButton = document.getElementById("btn");
-const titleInput = document.getElementById("title");
+const setButton = document.getElementById("btn");
+const titleInput = document.getElementById("info-3");
 setButton.addEventListener("click", () => {
   const title = titleInput.value;
-  window.myAPI.setTitle(title);
-}); */
+  window.testAPI.setTitle(title);
+});
 
-//设立新窗口
+// 必须有下面这段才能进行渲染
 const tt = document.getElementById("ttt");
 tt.addEventListener("click", () => {
   // 尝试通信

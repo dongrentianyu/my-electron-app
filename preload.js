@@ -24,6 +24,10 @@ contextBridge.exposeInMainWorld("myAPI", {
   yyu: () => ipcRenderer.send("yyu"),
 });
 
+contextBridge.exposeInMainWorld("testAPI", {
+  setTitle: (title) => ipcRenderer.send("set-title", title),
+});
+
 // 发送消息到主进程请求创建窗口
 // ipcRenderer.send("window-created");
 
