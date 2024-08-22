@@ -4,6 +4,7 @@
 const { app, BrowserWindow, ipcMain } = require("electron/main");
 const path = require("node:path");
 
+let ass;
 const createWindow = () => {
   // 创建主窗口
   const mainWindow = new BrowserWindow({
@@ -31,7 +32,8 @@ const createWindow = () => {
 // 部分 API 在 ready 事件触发后才能使用。
 
 function handleSetTitle(event, title) {
-  const webContents = event.sender;
+  // const webContents = event.sender;
+  const webContents = ass.webContents;
   let win = BrowserWindow.fromWebContents(webContents);
   win.setTitle(title);
 }
@@ -39,7 +41,7 @@ function handleSetTitle(event, title) {
 // 可以新建窗口了
 function yyu() {
   // 创建浏览器窗口。
-  let ass = new BrowserWindow({
+  ass = new BrowserWindow({
     width: 800,
     height: 400,
     icon: "1234.jpg",
@@ -79,7 +81,7 @@ app.whenReady().then(() => {
   });
 
   ipcMain.on("set-title", handleSetTitle);
-  // ipcMain.handle("ping", () => "pong");
+  ipcMain.handle("ping", () => "pong");
   app.on("activate", () => {
     // 在 macOS 系统内, 如果没有已开启的应用窗口
     // 点击托盘图标时通常会重新创建一个新窗口
