@@ -1,0 +1,25 @@
+#holder {
+    width: 600px;
+    height: 600px;
+    background-color: gray;
+}
+
+#holder h1 {
+    font-size: 40px;
+}
+#readList {
+    background-color: beige;
+}
+#readList h1 {
+    font-size: 40px;
+}
+/* .wv {
+    width: 500px;
+    height: 800px;
+    style="width: 100px; height: 5000px"
+    style="width: 100px; height: 500px"
+} */
+#wv {
+    width: 500px;
+    height: 800px;
+}
